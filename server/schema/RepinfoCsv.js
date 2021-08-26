@@ -54,6 +54,12 @@ cube(`RepinfoCsv`, {
       type: `number`,
     },
   },
+
+  segments: {
+    regionDetails: {
+      sql: `${CUBE}.region = 'north'`,
+    },
+  },
   
   dataSource: `default`
 });
