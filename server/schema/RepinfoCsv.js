@@ -1,5 +1,5 @@
-cube(`TablematSalesCsv`, {
-  sql: `SELECT * FROM public.tablemat_sales_csv`,
+cube(`RepinfoCsv`, {
+  sql: `SELECT * FROM public.repinfo_csv`,
   
   preAggregations: {
     // Pre-Aggregations definitions go here
@@ -13,35 +13,46 @@ cube(`TablematSalesCsv`, {
   measures: {
     count: {
       type: `count`,
-      drillMembers: [date]
-    },
-    
-    unitCost: {
-      sql: `unit_cost`,
-      type: `sum`
+      drillMembers: [date, id]
     },
     
     total: {
       sql: `total`,
       type: `sum`
+    },
+    
+    unitCost: {
+      sql: `unit_cost`,
+      type: `sum`
     }
   },
   
   dimensions: {
+    item: {
+      sql: `item`,
+      type: `string`
+    },
+    
     date: {
       sql: `date`,
       type: `string`
+    },
+    
+    id: {
+      sql: `id`,
+      type: `number`,
+      primaryKey: true
     },
     
     region: {
       sql: `region`,
       type: `string`
     },
-    
-    item: {
-      sql: `item`,
-      type: `string`
-    }
+
+    rep_id: {
+      sql: `rep_id`,
+      type: `number`,
+    },
   },
   
   dataSource: `default`
